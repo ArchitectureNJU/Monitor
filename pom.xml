@@ -6,7 +6,7 @@
 	<groupId>cross</groupId>
 	<artifactId>monitor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Monitor</name>
 	<description>monitor for other web server</description>
@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<tomcat.versions>9.0.0</tomcat.versions>
 	</properties>
 
 	<dependencies>

@@ -28,7 +28,7 @@ public class State {
     }
 
 
-    @RequestMapping(value = "/state",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     @ResponseBody
     public synchronized Map<String,ServerInfo> queryState(){
         state.entrySet().forEach(e->e.getValue().selfCall());
