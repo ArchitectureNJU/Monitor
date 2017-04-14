@@ -98,4 +98,20 @@ public class ServerInfo {
     public void setMaxMemory(long maxMemory) {
         this.maxMemory = maxMemory;
     }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

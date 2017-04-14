@@ -1,5 +1,6 @@
 package cross.controller;
 
+import com.sun.deploy.net.HttpResponse;
 import cross.entity.ServerInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,17 +22,17 @@ public class State {
     public State(){state=new ConcurrentHashMap<>();}
 
     @RequestMapping(value = "/beat",method = RequestMethod.POST)
-    public synchronized Map<String,Object> beat(@ModelAttribute("ServerInfo")ServerInfo serverInfo){
+    @ResponseBody
+    public synchronized String beat(@ModelAttribute("ServerInfo")ServerInfo serverInfo){
         state.put(serverInfo.getIp(),serverInfo);
-        Map<String,Object> response=new ConcurrentHashMap<>();
-        response.put("state","ok");
-        return response;
+        return "OK";
     }
 
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     @ResponseBody
-    public synchronized Map<String,ServerInfo> queryState(){
+    public synchronized Map<String,ServerInfo> queryState(HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "*");
         state.entrySet().forEach(e->e.getValue().selfCall());
         return state;
     }
